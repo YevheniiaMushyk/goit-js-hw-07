@@ -25,13 +25,6 @@ const images = [
 	},
 ];
 const list = document.querySelector(".gallery");
-const galleryList = images.map((image) => {
-	const liTag = document.createElement("li");
-	list.append(liTag);
-	const imgTag = document.createElement("img");
-	liTag.append(imgTag);
-	imgTag.src = image.url;
-	imgTag.alt = image.alt;
-	return liTag;
-});
-console.log(galleryList);
+const createMarkup = ({ url, alt }) => `<li><img src="${url}" alt="${alt}" /></li>`;
+const markup = images.map(createMarkup).join("");
+list.insertAdjacentHTML("beforeend", markup);
