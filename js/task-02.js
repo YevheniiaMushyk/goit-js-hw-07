@@ -24,6 +24,7 @@ const images = [
 		alt: "Zebras on Zebra",
 	},
 ];
+
 const list = document.querySelector(".gallery");
 const createMarkup = ({ url, alt }) => `<li><img src="${url}" alt="${alt}" /></li>`;
 const markup = images.map(createMarkup).join("");
