@@ -1,7 +1,7 @@
 const block = document.querySelector("#controls");
-const inputSell = block.firstElementChild;
-inputSell.addEventListener("change", (event) => {
-	return inputSell.value;
+const inputBtn = block.firstElementChild;
+inputBtn.addEventListener("change", (event) => {
+	return inputBtn.value;
 });
 
 function getRandomHexColor() {
@@ -12,36 +12,36 @@ function getRandomHexColor() {
 
 let minWidth = 30;
 let minHeight = 30;
+const markupBox = [];
 function createBoxes(amount) {
 	const boxes = document.querySelector("#boxes");
 	for (let i = 1; i <= amount; i += 1) {
-		const box = document.createElement("div");
-		box.classList.add("boxClass");
-		box.style.width = `${minWidth}px`;
-		box.style.height = `${minHeight}px`;
-		box.style.marginTop = `5px`;
-		box.style.backgroundColor = getRandomHexColor();
-		block.append(box);
+		const box = `<div class="boxClass" style="width: ${minWidth}px; height: ${minHeight}px; margin-top: 5px; background-color: ${getRandomHexColor()};"></div>`;
+		markupBox.push(box);
 		minWidth += 10;
 		minHeight += 10;
 	}
+	boxes.innerHTML = markupBox.join("");
+	minWidth = 30;
+	minHeight = 30;
 }
-const createBlock = inputSell.nextElementSibling;
-createBlock.addEventListener("click", () => {
-	if (inputSell.value >= 1 && inputSell.value <= 100) {
-		createBoxes(inputSell.value);
-		const inputDelSell = block.firstElementChild;
-		inputDelSell.reset();
+const createBtn = inputBtn.nextElementSibling;
+createBtn.addEventListener("click", () => {
+	if (inputBtn.value >= 1 && inputBtn.value <= 100) {
+		createBoxes(inputBtn.value);
+		inputBtn.value = "";
 	} else {
 		alert("Invalid value");
 	}
 });
 
 function destroyBoxes() {
-	const deletBoxes = document.querySelector("#boxes");
-	deletBoxes.children.innerHTML("beforeend", "");
+	const deletBoxes = boxes.querySelectorAll(".boxClass");
+	const deleteMarkup = deletBoxes.forEach((box) => {
+		box.remove();
+	});
 }
-const deleteBlock = block.LastElementChild;
-deleteBlock.addEventListener("click", () => {
+const deleteBtn = block.lastElementChild;
+deleteBtn.addEventListener("click", () => {
 	destroyBoxes();
 });
