@@ -12,7 +12,7 @@ function getRandomHexColor() {
 
 let minWidth = 30;
 let minHeight = 30;
-const markupBox = [];
+let markupBox = [];
 function createBoxes(amount) {
 	const boxes = document.querySelector("#boxes");
 	for (let i = 1; i <= amount; i += 1) {
@@ -24,6 +24,7 @@ function createBoxes(amount) {
 	boxes.innerHTML = markupBox.join("");
 	minWidth = 30;
 	minHeight = 30;
+	markupBox = [];
 }
 const createBtn = inputBtn.nextElementSibling;
 createBtn.addEventListener("click", () => {
